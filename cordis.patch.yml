@@ -1,0 +1,17 @@
+# dsh-scrcpy-core bundle patch
+#
+# 该包以「bundle」形式挂载：把包加入 profile 的 dsh.profile.bundles 后，这一层 patch
+# 会向组合树插入插件行（宿主半区 + 浏览器半区）。
+#
+# ⚠️ 这一行【只能由 core 自己的层插】：
+#    两个 bundle 层各插一条同 id 条目，组合结果里会留下两条同 id 条目，
+#    挂载时被 EntryGroup.update 以 `duplicate loader entry id` 拒绝、启动直接失败
+#    （2026-09-24 实测，见 PLAN-3.0.0.md §5.6）。
+#    provider 的 cordis.patch.yml 只插自己那一行，不许碰 scrcpy-core 这一行。
+#
+# ⚠️ 安装要求：core 必须作为 profile 的【直接依赖】装一次。
+#    只装 provider 时 core 只是传递依赖，不会被登记成层 → 层不挂载 → 静默失效，
+#    连警告都没有（2026-09-25 两组对照实测，见 evidence/install-reconcile.txt）。
+- insert:
+    - id: scrcpy-core
+      name: dsh-scrcpy-core

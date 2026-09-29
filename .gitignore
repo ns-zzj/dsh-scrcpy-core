@@ -1,0 +1,37 @@
+# ---- 依赖 ----
+node_modules/
+.pnpm-store/
+
+# ---- 打包/构建产物（npm pack、dsh 装包时生成，不入库）----
+*.tgz
+*.tar.gz
+dist/
+build/
+
+# ---- 内部资料：不公开（设计与进度笔记放工作区根目录；这里列一份保险，防止手滑提交）----
+PROGRESS.md
+PLAN-*.md
+docs/internal/
+
+# 注：编译产物（.class / out/）【不忽略】—— 用户明确说过有用。
+
+# ---- 本机/临时 ----
+Temp/
+temp/
+*.log
+*.local
+.env
+.env.*
+
+# ---- 密钥/凭据（绝对不要提交）----
+*.key
+*.pem
+credentials*
+.credentials.yaml
+
+# ---- 编辑器/系统 ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

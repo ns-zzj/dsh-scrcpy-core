@@ -16,8 +16,12 @@
 //   5. 没装任何 provider 时给明确提示（不再是一片空白）。
 // ============================================================
 
-window.__ModuleLoader__.load({
-  id: 'dsh-scrcpy-core',
+if (window.__dshScrcpyCoreRegistered) {
+  try { console.warn('[dsh-scrcpy-core] bundle already registered - skip duplicate execution') } catch (e) {}
+} else {
+  window.__dshScrcpyCoreRegistered = true
+  window.__ModuleLoader__.load({
+  id: '@nszzj/dsh-scrcpy-core',
   factory: (require) => {
     var module = { exports: {} }
     var exports = module.exports
@@ -265,7 +269,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
     function insertStyles(css) {
       try {
         const el = document.createElement('style')
-        el.setAttribute('data-plugin', 'dsh-scrcpy-core')
+        el.setAttribute('data-plugin', '@nszzj/dsh-scrcpy-core')
         el.textContent = css
         document.head.appendChild(el)
       } catch (e) {}
@@ -2143,3 +2147,4 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
     return module.exports
   },
 })
+}

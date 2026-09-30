@@ -14,4 +14,4 @@
 #    连警告都没有（2026-09-25 两组对照实测，见 evidence/install-reconcile.txt）。
 - insert:
     - id: scrcpy-core
-      name: @nszzj/dsh-scrcpy-core
+      name: "@nszzj/dsh-scrcpy-core"

@@ -1,6 +1,6 @@
 {
   "name": "@nszzj/dsh-scrcpy-core",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "DSH-scrcpy 共用核心 --- DSH-scrcpy Shared Core",
   "type": "module",
   "main": "lib/index.js",

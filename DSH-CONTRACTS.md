@@ -17,8 +17,8 @@
 | `ctx.webServer.register({ kind: 'exact', path, handler })` | 挂 `/dsh-scrcpy/rpc`（客户端是静态包，**不能自己起服务**，UI 全部数据都走它） | 面板打不开、全部 UI 失效 |
 | `ctx.provide('scrcpyProviders', registry)` | 给 provider 用的服务名（**这是我们自己的契约**，见 `CONTRACT.md`） | provider 停在 `pending (waiting for service)` |
 | `ctx.get('approval')` | 二次确认弹层（点击/长按/按键/输入/读控件） | 确认框不弹 → 权限门禁失效 |
-| `ctx.get('llm')` → `listProviders()` / `listModels()` / `stream()` | 截图识别。**provider id 绝不写死** | **踩过**：0.1.5 叫 `deepseek-official`、0.1.7 叫 `deepseek-account`，写死 → 模型列表恒空、下拉禁用 |
-| `ctx.get('attachments').saveImages([...])` | 把截图变成模型能吃的图片引用 | 截图识别不可用 |
+| `ctx.get('attachments').saveImages([...])` | 把截图变成**能直接交给当前模型**的图片引用（`render` 里返回 `{ type:'image', attachment }`） | 截图工具不可用 |
+| `ctx.get('llm')` → `listProviders()` / `listModels()` / `stream()` | **本插件已不再使用**（3.x 曾用它做"截图识别"：把图交给一个视觉模型换成文字）。现在图片直接给当前会话模型；模型不支持图片时 harness 会塞 `[image omitted ...]` 占位 | 留档：provider id 绝不写死（0.1.5 叫 `deepseek-official`、0.1.7 叫 `deepseek-account`） |
 | `ctx.on('dispose', …)` | 注销工具 / 路由 / 提示词 | 热重载后残留旧实例 |
 
 ## 2. 浏览器半区（`core/client/client.js`）

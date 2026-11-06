@@ -363,8 +363,8 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
       const ZH = {
         'menu.title': 'scrcpy 菜单', 'menu.describe': '打开设备列表',
         'menu.refresh': '刷新', 'menu.refreshing': '刷新中',
-        'menu.group': '{label}设备', 'menu.envReady': '环境就绪', 'menu.envPending': '待配置',
-        'menu.unavailable': '不可用', 'menu.blocked': '已停用', 'menu.blockReason': '与当前 core 版本不配套，已停用',
+        'menu.group': '{label}', 'menu.envReady': '环境就绪', 'menu.envPending': '待配置',
+        'menu.unavailable': '不可用', 'menu.blocked': '不兼容', 'menu.blockReason': 'ABI 与当前 core 不一致，已停用', 'menu.abiUnknown': 'ABI-未知',
         'menu.connSettings': '连接设置', 'menu.start': '启动', 'menu.mirror': '投屏', 'menu.disconnect': '断开',
         'menu.connecting': '连接中…', 'menu.detecting': '正在检测…', 'menu.detectingDevices': '正在检测设备…',
         'menu.noDevices': '没检测到设备\n请确认设备已开调试并连上（USB 或无线）',
@@ -390,14 +390,18 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         'panel.kbdNotReady': '键盘未接管（UHID 未就绪）',
         'panel.kbdTitle': '点一下画面接管键盘，点画面外放开',
         'panel.kbdUnsupported': '此平台不支持键盘接管',
+        'panel.inUnsupported': '不支持键盘输入', 'panel.inToggleLabel': '键盘输入启用开关', 'panel.inOff': '未启用键盘输入',
+        'panel.inBlur': '未聚焦，无法输入', 'panel.inReady': '已聚焦，准备输入',
+        'panel.inTextOnly': '（仅支持文字）', 'panel.inAria': '电脑键盘输入到设备',
+        'panel.inTitle': '打开开关后点一下画面，就能用电脑键盘和输入法往这台设备打字；点画面外或关掉开关即退出',
+        'panel.inToggleTitle': '开关：允许用电脑键盘往这台设备打字',
+        'panel.inFailed': '输入失败：{msg}', 'panel.inNoKeys': '这台设备只能接收文字，按键不可用',
         'key.back': '返回', 'key.home': '主页', 'key.volumeUp': '音量+', 'key.volumeDown': '音量-', 'key.power': '电源',
         'settings.title': 'AI 控制设置', 'settings.done': '完成',
         'settings.perm.shot': '允许截图', 'settings.perm.ctl': '允许读取控件&点击/长按',
         'settings.perm.key': '允许按键', 'settings.perm.keyDyn': '允许按键（{keys}）', 'settings.perm.input': '允许输入文字',
         'settings.mode.off': '禁止使用', 'settings.mode.confirm': '需要确认', 'settings.mode.trust': '无需确认',
         'settings.depHint': '读取控件 / 点击长按 / 按键 / 输入 都依赖「允许截图」',
-        'settings.model': '识别模型', 'settings.modelLoading': '加载中…',
-        'settings.modelNone': '没有任何提供方提供可用模型',
         'settings.notice.off': '已禁止 {sn} 的{label}',
         'settings.notice.set': '已设置 {sn} {label}为{mode}',
         'settings.err.load': '读取设置失败: {msg}', 'settings.err.save': '设置失败: {msg}',
@@ -415,7 +419,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         'shot.captureFailed': '截图失败: {msg}', 'shot.addFailed': '添加图片失败',
         'shot.busy': '输入框忙，未能添加图片',
         'common.unknown': '未知错误', 'common.unknownReason': '未知原因',
-        // 连接设置的两个分区 + 画面四件套（【用户口述 2026-09-26】：环境设置 = 状态点 + 路径；参数设置 = 有线/无线 × 缩放/最高帧率）
+        // 连接设置的两个分区 + 画面四件套（环境设置 = 状态点 + 路径；参数设置 = 有线/无线 × 缩放/最高帧率）
         'cfg.secEnv': '环境设置', 'cfg.secParam': '参数设置', 'cfg.build': 'provider 构建',
         'cfg.wired': '有线', 'cfg.wireless': '无线',
         'cfg.scale': '缩放', 'cfg.fps': '最高帧率', 'cfg.scaleFull': '原画',
@@ -429,8 +433,8 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
       const EN = {
         'menu.title': 'scrcpy menu', 'menu.describe': 'Open the device list',
         'menu.refresh': 'Refresh', 'menu.refreshing': 'Refreshing…',
-        'menu.group': '{label} devices', 'menu.envReady': 'Ready', 'menu.envPending': 'Needs setup',
-        'menu.unavailable': 'Unavailable', 'menu.blocked': 'Disabled', 'menu.blockReason': 'not compatible with this core version — disabled',
+        'menu.group': '{label}', 'menu.envReady': 'Ready', 'menu.envPending': 'Needs setup',
+        'menu.unavailable': 'Unavailable', 'menu.blocked': 'Incompatible', 'menu.blockReason': 'ABI mismatch with this core — disabled', 'menu.abiUnknown': 'ABI-unknown',
         'menu.connSettings': 'Connection settings', 'menu.start': 'Start', 'menu.mirror': 'Open', 'menu.disconnect': 'Disconnect',
         'menu.connecting': 'Connecting…', 'menu.detecting': 'Detecting…', 'menu.detectingDevices': 'Detecting devices…',
         'menu.noDevices': 'No device detected.\nMake sure the device has debugging enabled and is connected (USB or wireless).',
@@ -456,14 +460,18 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         'panel.kbdNotReady': 'Keyboard not captured (UHID not ready)',
         'panel.kbdTitle': 'Click the picture to capture the keyboard; click outside to release it',
         'panel.kbdUnsupported': 'Keyboard capture is not supported on this platform',
+        'panel.inUnsupported': 'Keyboard input not supported', 'panel.inToggleLabel': 'Enable keyboard input', 'panel.inOff': 'Keyboard input off',
+        'panel.inBlur': 'Not focused: cannot type', 'panel.inReady': 'Focused: ready to type',
+        'panel.inTextOnly': ' (text only)', 'panel.inAria': 'Computer keyboard input to the device',
+        'panel.inTitle': 'Turn the switch on, click the picture, then type with your computer keyboard and IME; click outside or turn the switch off to stop',
+        'panel.inToggleTitle': 'Allow typing to this device with the computer keyboard',
+        'panel.inFailed': 'Input failed: {msg}', 'panel.inNoKeys': 'This device accepts text only; keys are unavailable',
         'key.back': 'Back', 'key.home': 'Home', 'key.volumeUp': 'Vol+', 'key.volumeDown': 'Vol−', 'key.power': 'Power',
         'settings.title': 'AI control settings', 'settings.done': 'Done',
         'settings.perm.shot': 'Allow screenshots', 'settings.perm.ctl': 'Allow reading controls & tap/long-press',
         'settings.perm.key': 'Allow keys', 'settings.perm.keyDyn': 'Allow keys ({keys})', 'settings.perm.input': 'Allow text input',
         'settings.mode.off': 'Blocked', 'settings.mode.confirm': 'Ask each time', 'settings.mode.trust': 'Always allow',
         'settings.depHint': 'Controls / tap / keys / typing all depend on “Allow screenshots”',
-        'settings.model': 'Vision model', 'settings.modelLoading': 'Loading…',
-        'settings.modelNone': 'No provider offers a usable model',
         'settings.notice.off': 'Blocked {label} for {sn}',
         'settings.notice.set': 'Set {label} for {sn} to {mode}',
         'settings.err.load': 'Failed to load settings: {msg}', 'settings.err.save': 'Failed to save: {msg}',
@@ -615,7 +623,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         const labels = c.keyLabels || {}
         return keys.map(function (k) { return capText(labels[k]) || String(k) }).join(' / ')
       }
-      /** 按键那一项的标题：**按 provider 的声明现算**（【用户口述 2026-09-27】）；没有就退回不带括号的 */
+      /** 按键那一项的标题：**按 provider 的声明现算**；没有就退回不带括号的 */
       function keyPermLabel(caps) {
         const list = aiKeyList(caps)
         return list ? T('settings.perm.keyDyn', { keys: list }) : T('settings.perm.key')
@@ -709,7 +717,6 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         const [panelW, setPanelW] = React.useState(360)
         const [settingsOpen, setSettingsOpen] = React.useState(false)
         const [preview, setPreview] = React.useState(null)
-        const [modelInfo, setModelInfo] = React.useState(null)
         const wsRef = React.useRef(null)
         const jmuxerRef = React.useRef(null)
         const deviceSizeRef = React.useRef(null)
@@ -799,7 +806,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         const shownBytesRef = React.useRef(0)
         const playingRef = React.useRef(false)
 
-        // 【用户口述 2026-09-29】日志必须带时间戳 —— 否则只能靠猜顺序，两边的日志也没法并排对。
+        // 日志必须带时间戳 —— 否则只能靠猜顺序，两边的日志也没法并排对。
         //   格式与 sidecar 的 `2026.09.29/12:11:28.195/INFO` 对齐，方便把插件日志和 sidecar 日志并排看。
         function logTs() {
           const d = new Date()
@@ -811,15 +818,6 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         // 需要**活着留证据**的诊断走这条：写进那份 500 行的日志（diag 只有 15 行，卡住诊断很容易被后续诊断挤掉，
         // 而用户通常是事后才打开日志面板 —— 【2026-09-28】为此加）
         function logDiagLong(msg) { setLogLines(function (prev) { return prev.concat(logTs() + ' ' + String(msg)).slice(-500) }) }
-
-        function loadModelInfo() {
-          rpc('model:list', {}).then(function (r) { setModelInfo(r || null) }).catch(function () { setModelInfo(null) })
-        }
-        function changeModel(value) {
-          // 下拉里一个选项 = 一对「提供方 + 模型」，用 \u0000 拼在一起传
-          const parts = String(value || '').split('\u0000')
-          rpc('model:set', { provider: parts[0] || '', model: parts[1] || '' }).then(function () { loadModelInfo() }).catch(function () {})
-        }
 
         function computeWidth() {
           const d = deviceSizeRef.current
@@ -882,7 +880,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         }
         function hidHandles(e) { return HID_MODIFIER_CODES[e.code] === 1 || !!HID_USAGE[e.code] }
         function sendHidKey(e, down) {
-          // 【用户实测 2026-09-29】不支持键盘接管的平台（caps.keyboard === false，如鸿蒙）**一个键都不能发**：
+          // 不支持键盘接管的平台（caps.keyboard === false，如鸿蒙）**一个键都不能发**：
           //   鸿蒙 sidecar 的协议里没有 `hid` 类型 → 按一下 Shift 就回 "错误: unknown type: hid"。
           //   之前 caps.keyboard 只用来显示提示文字，没拦住发送，所以漏了。
           if (caps && caps.keyboard === false) return false
@@ -902,7 +900,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
           const next = !logOpen
           setLogOpen(next)
           logOpenRef.current = next
-          // 【用户口述 2026-09-27】不做设备日志流：这个面板只放**插件日志**（本地诊断 + provider 推的诊断行）。
+          // 不做设备日志流：这个面板只放**插件日志**（本地诊断 + provider 推的诊断行）。
           //   以前这里无条件发 {type:'log'} 让 provider 开设备日志 —— 安卓当 no-op，鸿蒙的 sidecar 却会真的
           //   去 `hdc shell hilog` 往面板刷设备日志（实测：一开日志面板满屏 hilog）。
           //   现在只在 provider **声明支持**（capabilities.log === true）时才发这条命令。
@@ -936,7 +934,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
               // 重建解码器：分辨率/方向变了必须换一个新的 jmuxer 实例 —— 否则旧的 avcC 去解新分辨率的帧，
               // 表现就是画面被拉伸/花掉（demo 里的"旋转修复"就是这个，core 这版一开始漏了；2026-09-26 用户实测指出）
               function resetMuxer(reason) {
-                // 【用户口述 2026-09-28】重建这件事要留够排查线索：原因 + 重建前的旧状态（元素时间轴/缓冲）
+                // 重建这件事要留够排查线索：原因 + 重建前的旧状态（元素时间轴/缓冲）
                 //   + 当时的帧尺寸/已收帧数/fps。以前只有一行"jmuxer 重建（原因）"，出事看不出上下文。
                 let before = ''
                 try {
@@ -995,14 +993,14 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
                       const parts = String(o.data).split('x')
                       if (parts.length === 2) {
                         const w = parseInt(parts[0], 10), h = parseInt(parts[1], 10)
-                        // 【用户口述 2026-09-28】报来的是"provider 的 input 期望的坐标空间"（鸿蒙=设备尺寸、安卓=帧尺寸）。
+                        // 报来的是"provider 的 input 期望的坐标空间"（鸿蒙=设备尺寸、安卓=帧尺寸）。
                         //   存进 reportedSizeRef（原值），由 500ms 心跳按"当前画面方向"决定要不要对调后写进 deviceSizeRef ——
                         //   因为转屏后 sidecar 不会重发这个值，存的原值可能是旧方向的。
                         const prev = reportedSizeRef.current
                         const changed = !!(prev && (prev.w !== w || prev.h !== h))
                         reportedSizeRef.current = { w: w, h: h }
                         if (changed) logDiag('provider 报的坐标空间 ' + prev.w + 'x' + prev.h + ' → ' + w + 'x' + h)
-                        // 【用户要求 2026-09-29】这里**只管坐标空间**，不碰解码器：
+                        // 这里**只管坐标空间**，不碰解码器：
                         //   重建统一由"喂之前扫 SPS"负责（平台无关）—— 两端走同一条路，core 里不再有平台分支。
                         applyWidth()
                       }
@@ -1069,7 +1067,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
                     const end = v.buffered.end(v.buffered.length - 1)
                     const lag = end - v.currentTime
                     if (lag > 2.5) { v.currentTime = Math.max(0, end - 0.15); logDiag('MSE 缓冲深度 ' + lag.toFixed(1) + 's，已跳到直播边缘') }
-                    // 【用户实测 2026-09-28 的诊断行实证】播放头**越过**缓冲末端：
+                    // 播放头**越过**缓冲末端：
                     //   readyState=2 paused=false ended=false currentTime=56.49 buffered=[9.73-55.63]
                     //   （缓冲只有一段且在持续增长、帧持续到达 → 不是空洞、不是 ended）
                     //   成因：jmuxer 按固定 fps 算每帧时长，而变化驱动的流帧数远少于 fps →
@@ -1082,7 +1080,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
                     }
                   }
                 } catch (e) {}
-                // 【用户口述 2026-09-28】鸿蒙旋转：sidecar 不下发尺寸变化，靠解码尺寸**只判断长宽比是否翻转**。
+                // 鸿蒙旋转：sidecar 不下发尺寸变化，靠解码尺寸**只判断长宽比是否翻转**。
                 //   ⚠️ 绝不能拿 videoWidth 去改 deviceSizeRef（触控坐标空间）：
                 //     {msg:'size'} 给的是**设备尺寸**（如 2880x1920），1/2 缩放时 videoWidth 是**编码帧尺寸**（1440x960），
                 //     两者本来就不相等 → 会被误判成"旋转/尺寸变化" → 多重建一次解码器 → 等不到关键帧 → **全黑**
@@ -1092,7 +1090,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
                   const vw = vv ? Number(vv.videoWidth) || 0 : 0
                   const vh = vv ? Number(vv.videoHeight) || 0 : 0
                   if (vw > 0 && vh > 0) {
-                    // 【用户要求 2026-09-29】坐标空间**原样用 provider 报的值**，core 不做方向纠正
+                    // 坐标空间**原样用 provider 报的值**，core 不做方向纠正
                     //   （平台差异一律回 provider / 靠声明，core 里不许有 inputSpace 这种分支）。
                     const rep = reportedSizeRef.current
                     if (rep) deviceSizeRef.current = { w: rep.w, h: rep.h }
@@ -1103,14 +1101,14 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
                       logDiag('画面尺寸变化 ' + pv.w + 'x' + pv.h + ' → ' + vw + 'x' + vh)
                       logDiagLong('画面尺寸变化 ' + pv.w + 'x' + pv.h + ' → ' + vw + 'x' + vh
                         + '（坐标空间现为 ' + (deviceSizeRef.current ? deviceSizeRef.current.w + 'x' + deviceSizeRef.current.h : '?') + '）')
-                      // 【用户要求 2026-09-29】这里**不再重建**（原来按 caps.rebuildOnResize 分平台走两条路）：
+                      // 这里**不再重建**（原来按 caps.rebuildOnResize 分平台走两条路）：
                       //   靠 videoWidth 发现变化太晚，而且会造成平台分支。
                       //   重建统一由"喂之前扫 SPS → 异步安全地先换 jmuxer 再喂"负责（那条已实测）。
                       applyWidth()
                     }
                   }
                 } catch (e) {}
-                // jmuxer 卡住：这里**只观察、不干预**（【用户口述 2026-09-28】"遇到问题就重建 jmuxer，我怎么复现"）。
+                // jmuxer 卡住：这里**只观察、不干预**（解码器状态异常时不要直接重建，先留下可复现的线索）。
                 //   卡住期间每 2 秒把 video 的真实状态写进日志；根因等诊断行拿到再改。
                 try {
                   const v = videoRef.current
@@ -1137,7 +1135,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
                         + ' 收到帧=' + framesRef.current + ' 距上帧=' + Math.round((Date.now() - lastFrameRef.current) / 1000) + 's')
                     }
                     // ⚠️ 本轮**故意不自动重建解码器**：重建会把要观察的"卡死"状态直接抹掉，
-                    //    用户就没法复现、也没法取证。【用户口述 2026-09-28】"遇到问题就重建 jmuxer，我怎么复现"
+                    //    用户就没法复现、也没法取证（不要一遇到问题就重建解码器）
                     //    这里只当观察者：卡住期间每 2 秒打一行状态（进 500 行那份日志），状态原样留着。
                   }
                 } catch (e) {}
@@ -1262,22 +1260,101 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         const statusLine = (status === 'closed' || status === 'error')
           ? (note || T('panel.closed'))
           : (frames > 0 ? (note ? (baseLine + ' · ' + note) : baseLine) : (note || WAIT_TEXT))
-        // 键盘状态文案：**由 provider 能力决定**（【用户口述 2026-09-26】：
+        // 键盘状态文案：**由 provider 能力决定**（
         // "加个参数？是否有按键输入、（有的话）已连接/未连接的中英文字"）
         //   caps.keyboard = { on: {zh,en}, off: {zh,en}, notReady?: {zh,en} }
         //   core 已按当前语言把 {zh,en} 挑成字符串（见 host 的 pickText / localizeDeep）
-        // 【用户口述 2026-09-27】三态，别把"不知道"和"知道但不行"混在一起：
+        // 三态，别把"不知道"和"知道但不行"混在一起：
         //   { on, off, notReady } → 有键盘接管，按状态显示那两句
         //   false                 → 明确不支持 → 显示"此平台不支持键盘接管"
         //   完全没声明             → 留白（兼容老 provider / 未知，不冤枉人家）
         //   ⚠️ 不能写成 `caps.keyboard || null`：false 会被 || 吃掉，退化成"没声明"
-        const kbdCap = caps ? caps.keyboard : undefined
-        const kbdText = kbdCap === false ? T('panel.kbdUnsupported')
-          : (!kbdCap ? ''
-            : (!kbdOn ? (kbdCap.off || T('panel.kbdOff'))
-              : (hidReady === false ? (kbdCap.notReady || kbdCap.off || T('panel.kbdNotReady')) : (kbdCap.on || T('panel.kbdOn')))))
+        // ── 手动键盘输入：电脑输入法 → 设备 ──────────────────────────
+        // 判据只看 provider 有没有 input 动作；没有就永远是"不支持"，连开关都不渲染。
+        // 面板上不出现 UHID / uinput 这类实现词，只表达"能不能打字"。
+        const [inputOn, setInputOn] = React.useState(false)
+        const [inputFocus, setInputFocus] = React.useState(false)
+        const [inputMsg, setInputMsg] = React.useState('')
+        const inputRef = React.useRef(null)
+        const composingRef = React.useRef(false)
+        const inputText = !!(caps && caps.inputText)
+        const inputKeys = !!(caps && caps.inputKeys)
+        const inputSuffix = inputKeys ? '' : T('panel.inTextOnly')
+        const inputState = !inputText ? ''
+          : (!inputOn ? T('panel.inOff') + inputSuffix
+            : (!inputFocus ? T('panel.inBlur') + inputSuffix : T('panel.inReady') + inputSuffix))
 
-        // 「日志」= 【插件日志】：客户端诊断 + provider 推来的诊断行（2026-09-26【用户口述】：不做设备日志流）
+        function inputSend(kind, payload) {
+          setInputMsg('')
+          rpc('input:send', Object.assign({ sn: sn, kind: kind }, payload)).then(function (r) {
+            if (!r || !r.ok) setInputMsg(T('panel.inFailed', { msg: (r && r.error) || T('common.unknown') }))
+          }).catch(function (e) {
+            setInputMsg(T('panel.inFailed', { msg: String((e && e.message) || e) }))
+          })
+        }
+        function inputTakeFocus() {
+          const el = inputRef.current
+          if (!el || !inputText || !inputOn) return
+          el.focus({ preventScroll: true })
+          setInputFocus(true)
+        }
+        function inputDropFocus() { setInputFocus(false); if (inputRef.current) inputRef.current.blur() }
+
+        // Ctrl+C：把设备剪贴板取回电脑。provider 不支持就静默（不提示、不报错）。
+        function pullDeviceClipboard() {
+          rpc('clipboard:pull', { sn: sn }).then(function (r) {
+            if (!r || !r.ok || !r.text) return
+            try {
+              if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(r.text).catch(function () {})
+            } catch (e) {}
+          }).catch(function () {})
+        }
+
+        // 隐形输入框：1px / 透明 / 不吃鼠标（这样鼠标事件全给画面，输入法仍能打字）
+        const sinkStyle = { position: 'absolute', left: 0, top: 0, width: '1px', height: '1px', opacity: 0, border: 0, padding: 0, margin: 0, pointerEvents: 'none', caretColor: 'transparent', resize: 'none', overflow: 'hidden' }
+        const sinkEl = inputText ? h('textarea', {
+          ref: inputRef, style: sinkStyle, autoComplete: 'off', autoCorrect: 'off', autoCapitalize: 'off', spellCheck: false,
+          'aria-label': T('panel.inAria'),
+          onCompositionStart: function () { composingRef.current = true },
+          onCompositionEnd: function (e) {
+            composingRef.current = false
+            const el = inputRef.current
+            const text = e.data || (el && el.value) || ''
+            setTimeout(function () { if (inputRef.current) inputRef.current.value = '' }, 0)
+            if (text) inputSend('text', { text: text })
+          },
+          onInput: function (e) {
+            const el = inputRef.current
+            if (!el) return
+            const native = e.nativeEvent || {}
+            // 组词中的原始拼音绝不能当文本发出去：inputType 是最可靠的判据
+            if (composingRef.current || native.isComposing || native.inputType === 'insertCompositionText' || native.keyCode === 229) return
+            const v = el.value
+            if (!v) return
+            el.value = ''
+            inputSend('text', { text: v })
+          },
+          onKeyDown: function (e) {
+            const native = e.nativeEvent || {}
+            if (composingRef.current || native.isComposing || native.keyCode === 229) return
+            if (e.key === 'Escape') { inputDropFocus(); return }
+            if ((e.ctrlKey || e.metaKey) && String(e.key).toLowerCase() === 'c') { e.preventDefault(); pullDeviceClipboard(); return }
+            if (e.ctrlKey || e.metaKey || e.altKey) return
+            const keys = ['Backspace', 'Delete', 'Enter', 'Tab', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End']
+            if (keys.indexOf(e.key) < 0) return
+            e.preventDefault()
+            if (!inputKeys) return   // 没有 key 动作：静默忽略，("仅支持文字") 已经写在那行了
+            inputSend('key', { key: e.key })
+          },
+          onPaste: function (e) {
+            e.preventDefault()
+            const t = (e.clipboardData && e.clipboardData.getData('text/plain')) || ''
+            if (t) inputSend('text', { text: t })
+          },
+          onBlur: function () { setInputFocus(false) },
+        }) : null
+
+        // 「日志」= 【插件日志】：客户端诊断 + provider 推来的诊断行（2026-09-26不做设备日志流）
         const logContent = diag.concat(logLines).join('\n') || T('panel.logEmpty')
 
         const rootCls = CSS_PREFIX + '-control'
@@ -1293,7 +1370,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
           }
         }
 
-        // 控制区的键：**完全按 provider 的声明**（【用户口述 2026-09-27】"剩下的按钮让 prov 声明"）
+        // 控制区的键：**完全按 provider 的声明**（"剩下的按钮让 prov 声明"）
         //   caps.keys = 界面按钮（数组顺序即显示顺序；可以是 [] = 这个平台没有这些键）→ core 不再内置默认表
         //   caps.keyLabels = 双语显示名（core 已按当前语言挑好）；个别缺的就用内置表兜，再缺就显示键名本身
         const keys = Array.isArray(caps.keys) ? caps.keys : []
@@ -1303,7 +1380,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         )
         // 全部强制成字符串：provider 的显示名可能是 {zh,en}，直接进 React 会炸掉整棵 UI（见 capText 的注释）
         Object.keys(keyLabel).forEach(function (k) { keyLabel[k] = capText(keyLabel[k]) || k })
-        // 这排按钮（日志 + 各键）的**统一最小宽度 = 最长那条文案的实际宽度**（【用户口述 2026-09-27】）。
+        // 这排按钮（日志 + 各键）的**统一最小宽度 = 最长那条文案的实际宽度**。
         // 于是它们会先尽量挤在一排；小到这个下限还放不下时，才由 flex-wrap 换行。
         // 量的时候借 -btn-sm 的样式（它字号 13px，比 -key 的 12px 大）→ 宁可宽一点，不会出现文字换行。
         const keyBtnLabels = [T('panel.log') + '▾'].concat(keys.map(function (k) { return capText(keyLabel[k]) || k }))
@@ -1316,26 +1393,45 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
             props.wireless === undefined ? null : h('span', {
               className: CSS_PREFIX + '-quality',
               title: props.wireless ? T('panel.wireless') : T('panel.wired'),
-            // 角标显示**真实生效的缩放**（【用户口述 2026-09-27】：选原画后不该还写 1/2）；
+            // 角标显示**真实生效的缩放**（选原画后不该还写 1/2）；
             //   scale = 除数（1 原画 / 2 / 3 / 4），由 provider 回报；拿不到就显示 —（不编）
             }, props.wireless
               ? T('panel.wirelessShort', { s: props.scale ? (props.scale === 1 ? T('cfg.scaleFull') : ('1/' + props.scale)) : '—' })
               : T('panel.wiredShort', { s: props.scale ? (props.scale === 1 ? T('cfg.scaleFull') : ('1/' + props.scale)) : '—' })),
             h('button', { className: CSS_PREFIX + '-btn-sm ' + CSS_PREFIX + '-shot-btn', title: T('panel.shotTitle'), onClick: function () { if (onAddShotToChat) onAddShotToChat(sn) } }, T('panel.shot')),
-            h('button', { className: CSS_PREFIX + '-btn-sm', title: T('panel.settingsTitle'), onClick: function () { setSettingsOpen(true); loadModelInfo() } }, T('panel.settings')),
+            h('button', { className: CSS_PREFIX + '-btn-sm', title: T('panel.settingsTitle'), onClick: function () { setSettingsOpen(true) } }, T('panel.settings')),
             h('button', { className: CSS_PREFIX + '-btn-sm', onClick: disconnect }, T('menu.disconnect')),
           ),
-          h('div', { className: CSS_PREFIX + '-status-bar' },
-            h('div', { className: CSS_PREFIX + '-control-status ' + statusCls, ref: statusRef }, error ? T('panel.errorPrefix', { msg: error }) : statusLine),
-            // 原来「输入」按钮的位置（2026-09-26【用户口述】：删掉输入按钮，这儿换成键盘状态，下面不再放东西）
-            kbdText ? h('div', { className: CSS_PREFIX + '-hint', title: kbdCap === false ? '' : T('panel.kbdTitle') }, kbdText) : null,
+          h('div', { className: CSS_PREFIX + '-status-bar', style: { display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '6px', minWidth: 0 } },
+            h('div', { className: CSS_PREFIX + '-control-status ' + statusCls, ref: statusRef, style: { whiteSpace: 'nowrap', flexShrink: 0 } }, error ? T('panel.errorPrefix', { msg: error }) : statusLine),
+            // 原来「输入」按钮的位置（2026-09-26删掉输入按钮，这儿换成键盘状态，下面不再放东西）
+            h('div', { className: CSS_PREFIX + '-input-row', style: { flexBasis: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', minWidth: 0, whiteSpace: 'nowrap' } },
+              h('label', { style: { display: 'inline-flex', alignItems: 'center', gap: '6px', whiteSpace: 'nowrap', flexShrink: 0 } },
+                inputText ? h('input', {
+                  type: 'checkbox', checked: inputOn, title: T('panel.inToggleTitle'), style: { margin: 0, cursor: 'pointer' },
+                  onChange: function (e) {
+                    setInputOn(e.target.checked)
+                    if (!e.target.checked) inputDropFocus()
+                    else setTimeout(inputTakeFocus, 0)
+                  },
+                }) : null,
+                h('span', { className: CSS_PREFIX + '-hint' }, inputText ? T('panel.inToggleLabel') : T('panel.inUnsupported')),
+              ),
+              h('span', { className: CSS_PREFIX + '-hint', title: inputText ? T('panel.inTitle') : '', style: { whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' } }, inputState),
+            ),
+            inputMsg ? h('div', { className: CSS_PREFIX + '-hint', style: { flexBasis: '100%', whiteSpace: 'normal', wordBreak: 'break-word', color: 'var(--dsw-alias-state-error-primary, #ec1313)' } }, inputMsg) : null,
           ),
+          sinkEl,
           h('div', { className: CSS_PREFIX + '-screen', ref: screenRef },
             h('video', {
               ref: videoRef, autoPlay: true, muted: true, playsInline: true, tabIndex: 0,
               // 去掉 Chromium 给聚焦元素的白框（点画面会冒出一圈，很难看）
               style: { outline: 'none' },
-              onMouseDown: function (e) { draggingRef.current = true; sendTouch('down', e.clientX, e.clientY) },
+              onMouseDown: function (e) {
+                // 先抢焦点：preventDefault 只挡"焦点转移"，pointer 事件照样发
+                if (inputOn && inputText) { e.preventDefault(); inputTakeFocus() }
+                draggingRef.current = true; sendTouch('down', e.clientX, e.clientY)
+              },
               onMouseMove: function (e) { if (draggingRef.current) sendTouch('move', e.clientX, e.clientY) },
               onMouseUp: function (e) { draggingRef.current = false; sendTouch('up', e.clientX, e.clientY) },
               onMouseLeave: function (e) { if (draggingRef.current) { draggingRef.current = false; sendTouch('up', e.clientX, e.clientY) } },
@@ -1362,14 +1458,13 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
             sn: sn, providerId: props.providerId, caps: caps,
             shotMode: shotMode, ctlMode: ctlMode, keyMode: keyMode, inputMode: inputMode,
             onModeChange: onModeChange,
-            modelInfo: modelInfo, onModelChange: changeModel,
             onClose: function () { setSettingsOpen(false) },
           }) : null,
         )
       }
 
       // ------------------------------------------------------------
-      // 设置弹层 A：AI 权限（core 的四项三态）+ 识别模型
+      // 设置弹层 A：AI 权限（core 的四项三态）
       // ------------------------------------------------------------
       function modeRow(label, value, onChange, disabled) {
         return h('div', { className: CSS_PREFIX + '-setting-row' },
@@ -1382,28 +1477,6 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
             h('option', { value: 'confirm' }, T('settings.mode.confirm')),
             h('option', { value: 'trust' }, T('settings.mode.trust')),
           ),
-        )
-      }
-
-      function modelRow(info, onChange) {
-        const models = (info && info.models) || []
-        const cfg = (info && info.configured) || {}
-        const value = cfg.provider && cfg.model ? (cfg.provider + '\u0000' + cfg.model) : ''
-        let warn = ''
-        if (!info) warn = T('settings.modelLoading')
-        else if (info.error) warn = info.error
-        else if (models.length === 0) warn = T('settings.modelNone')
-        return h('div', { className: CSS_PREFIX + '-setting-row' },
-          h('div', { className: CSS_PREFIX + '-setting-info' },
-            h('div', { className: CSS_PREFIX + '-setting-label' }, T('settings.model')),
-            warn ? h('div', { className: CSS_PREFIX + '-hint' }, warn) : null,
-          ),
-          h('select', {
-            className: CSS_PREFIX + '-select', value: value, disabled: models.length === 0,
-            onChange: function (e) { if (onChange) onChange(e.target.value) },
-          }, models.map(function (m) {
-            return h('option', { key: m.provider + '/' + m.id, value: m.provider + '\u0000' + m.id }, m.providerName + ' · ' + m.name)
-          })),
         )
       }
 
@@ -1423,7 +1496,6 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
               modeRow(keyPermLabel(props.caps), props.keyMode, function (v) { props.onModeChange('key', v) }, shotOff),
               modeRow(T('settings.perm.input'), props.inputMode, function (v) { props.onModeChange('input', v) }, shotOff),
               h('div', { className: CSS_PREFIX + '-hint' }, T('settings.depHint')),
-              modelRow(props.modelInfo, props.onModelChange),
             ),
             h('div', { className: CSS_PREFIX + '-dialog-foot' },
               h('button', { className: CSS_PREFIX + '-btn-sm ' + CSS_PREFIX + '-btn-primary', onClick: props.onClose }, T('settings.done')),
@@ -1455,7 +1527,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
             setFields((desc && desc.fields) || [])
             setDraft(Object.assign({}, (cfg && cfg.config) || {}))
             setEnv((e && e.items) || [])
-            setProvBuild((desc && desc.build) || '')   // 【用户口述 2026-09-26】：构建戳显示在按钮行左边
+            setProvBuild((desc && desc.build) || '')   // 构建戳显示在按钮行左边
           } catch (err) { setError(T('settings.err.load', { msg: String((err && err.message) || err) })) }
           setBusy(false)
         }
@@ -1485,7 +1557,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
           setBusy(false)
         }
 
-        // ── 画面四件套（core 固定渲染；【用户口述 2026-09-26】）──
+        // ── 画面四件套（core 固定渲染；）──
         //   key 由 core 定：wiredScale / wiredFps / wirelessScale / wirelessFps
         //   provider 声明了 capabilities.picture 才认为它会读；没声明也照样渲染，但给一句提示（不静默失效）
         //   ⚠️ 拿不到 capabilities（老 core/老 payload）时**不提示** —— 不知道就别冤枉人家
@@ -1561,8 +1633,8 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
             h('div', { className: CSS_PREFIX + '-dialog-body' },
               busy && !fields.length ? h('div', { className: CSS_PREFIX + '-empty' }, T('cfg.reading')) : null,
 
-              // ── 环境设置：状态小绿点行 + 路径字段；「自动检测」挪到标题右边（【用户口述 2026-09-26】）──
-              // 第一个分区标题 marginTop 归零 —— 否则和大标题之间会空一大块（【用户口述 2026-09-27】）
+              // ── 环境设置：状态小绿点行 + 路径字段；「自动检测」挪到标题右边──
+              // 第一个分区标题 marginTop 归零 —— 否则和大标题之间会空一大块
               h('div', { className: CSS_PREFIX + '-sec-head', style: { display: 'flex', alignItems: 'center', gap: '8px', marginTop: '0' } },
                 h('span', null, T('cfg.secEnv')),
                 h('button', { className: CSS_PREFIX + '-btn-sm', style: { marginLeft: 'auto' }, onClick: autoDetect, disabled: busy }, T('cfg.auto')),
@@ -1588,8 +1660,9 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
               notice ? h('div', { className: CSS_PREFIX + '-notice' }, notice) : null,
             ),
             h('div', { className: CSS_PREFIX + '-dialog-foot' },
-              // provider 构建戳：放在"取消/保存"行的左边（【用户口述 2026-09-26】）
-              h('span', { className: CSS_PREFIX + '-hint', style: { marginRight: 'auto' } }, T('cfg.build') + ' ' + (provBuild || '—')),
+              // provider 构建戳：放在"取消/保存"行的左边
+              h('span', { className: CSS_PREFIX + '-hint', style: { marginRight: 'auto' } },
+                T('cfg.build') + ' ' + (provBuild || '—') + ' · ' + ((props.providerAbiDeclared && props.providerAbi !== null && props.providerAbi !== undefined) ? ('ABI-' + props.providerAbi) : T('menu.abiUnknown'))),
               h('button', { className: CSS_PREFIX + '-btn-sm', onClick: props.onClose, disabled: busy }, T('cfg.cancel')),
               h('button', { className: CSS_PREFIX + '-btn-sm ' + CSS_PREFIX + '-btn-primary', onClick: save, disabled: busy }, busy ? T('cfg.busy') : T('cfg.save')),
             ),
@@ -1610,6 +1683,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         const [providers, setProviders] = React.useState([])
         const [devices, setDevices] = React.useState([])
         const [coreBuild, setCoreBuild] = React.useState('')    // core 构建戳（菜单标题栏右边）
+        const [coreAbi, setCoreAbi] = React.useState(null)       // core 的 ABI 代次（跟构建戳并排显示）
         const [refreshingId, setRefreshingId] = React.useState('')   // 正在刷新的 provider id
         const [envMap, setEnvMap] = React.useState({})               // providerId -> env items
         const [connectingSn, setConnectingSn] = React.useState('')
@@ -1633,6 +1707,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
             const provs = (d && d.providers) || []
             setProviders(provs)
             setCoreBuild((d && d.build) || '')
+            setCoreAbi((d && typeof d.abi === 'number') ? d.abi : null)
             setDevices((d && d.devices) || [])
             setRunningSns(((d && d.devices) || []).filter(function (x) { return x.streaming }).map(function (x) { return x.sn }))
             const m = await rpc('mode:get', {})
@@ -1652,7 +1727,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
           setBusy(false)
         }, [])
 
-        /** 只刷新一个 provider 的设备（【用户口述 2026-09-26】：每组标题栏里的"刷新"只刷自己） */
+        /** 只刷新一个 provider 的设备（每组标题栏里的"刷新"只刷自己） */
         const refreshProvider = React.useCallback(async function (id) {
           setRefreshingId(id); setError('')
           try {
@@ -1662,6 +1737,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
               setDevices((r && r.devices) || [])
               setRunningSns(((r && r.devices) || []).filter(function (x) { return x.streaming }).map(function (x) { return x.sn }))
               if (r.build) setCoreBuild(r.build)
+              if (typeof r.abi === 'number') setCoreAbi(r.abi)
               const e = await providerCall(id, 'env:detect', {})
               setEnvMap(function (prev) { const next = Object.assign({}, prev); next[id] = (e && e.items) || []; return next })
             }
@@ -1793,8 +1869,8 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
           open ? h('div', { className: CSS_PREFIX + '-panel', onMouseDown: function (e) { e.stopPropagation() } },
             h('div', { className: CSS_PREFIX + '-panel-head' },
               h('span', null, T('menu.title')),
-              // core 构建戳（【用户口述 2026-09-26】：占原来"刷新"的位置）；刷新已挪到每个 provider 的标题栏
-              h('span', { className: CSS_PREFIX + '-hint' }, 'core ' + (coreBuild || '—')),
+              // core 构建戳（占原来"刷新"的位置）；刷新已挪到每个 provider 的标题栏
+              h('span', { className: CSS_PREFIX + '-hint' }, 'core ' + (coreBuild || '—') + (coreAbi === null ? '' : (' ABI-' + coreAbi))),
             ),
             h('div', { className: CSS_PREFIX + '-panel-sec' },
               providers.length === 0 ? noProviderNote : null,
@@ -1806,8 +1882,9 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
                     h('span', null, T('menu.group', { label: p.label })),
                     h('span', { className: CSS_PREFIX + '-env-badge ' + ((p.blocked || !p.available || !envItems.every(function (i) { return i.ok })) ? 'bad' : 'ok') },
                       p.blocked ? T('menu.blocked') : (p.available ? (envItems.every(function (i) { return i.ok }) ? T('menu.envReady') : T('menu.envPending')) : (T('menu.unavailable') + (p.note ? '：' + p.note : '')))),
-                    // 连接设置 在左、刷新 在最右（【用户口述 2026-09-26】）；刷新只刷这一个 provider
-                    h('span', { style: { marginLeft: 'auto', display: 'flex', gap: '8px', alignItems: 'center' } },
+                    // 连接设置 在左、刷新 在最右；刷新只刷这一个 provider
+                    p.blocked ? h('span', { className: CSS_PREFIX + '-hint', style: { marginLeft: 'auto' } },
+                      (p.build || '—') + ' ' + ((p.abiDeclared && p.abi !== null && p.abi !== undefined) ? ('ABI-' + p.abi) : T('menu.abiUnknown'))) : h('span', { style: { marginLeft: 'auto', display: 'flex', gap: '8px', alignItems: 'center' } },
                       h('button', { className: CSS_PREFIX + '-connect', onClick: function () { setDialogFor(p) } }, T('menu.connSettings')),
                       h('button', { className: CSS_PREFIX + '-btn-sm', disabled: refreshingId === p.id, onClick: function () { refreshProvider(p.id) } },
                         refreshingId === p.id ? h('span', { className: CSS_PREFIX + '-spin' }) : null,
@@ -1817,17 +1894,17 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
                   // 版本不配套 → core 已把这个 provider 停用（设备不进列表、动作不路由），这里给一句原因
                   p.blocked ? h('div', { className: CSS_PREFIX + '-note', style: { color: 'var(--dsw-alias-state-error-primary, #ec1313)' } },
                     '⛔ ' + (p.blockReason || T('menu.blockReason'))) : null,
-                  busy && !envItems.length ? h('div', { className: CSS_PREFIX + '-empty' }, T('menu.detecting')) : null,
-                  envItems.map(function (it) {
+                  !p.blocked && busy && !envItems.length ? h('div', { className: CSS_PREFIX + '-empty' }, T('menu.detecting')) : null,
+                  p.blocked ? null : envItems.map(function (it) {
                     return h('div', { key: 'env-' + it.key, className: CSS_PREFIX + '-env-row' },
                       h('span', { className: CSS_PREFIX + '-dot ' + (it.ok ? 'ok' : 'bad') }),
                       h('b', null, it.label || it.key),
                       // info 行（比如"provider 构建"）没有路径，别显示"未配置"占位符去误导人
                   it.info ? null : h('span', { className: CSS_PREFIX + '-path', title: it.path || '' }, it.path || T('menu.notConfigured')),
-                      h('span', { className: CSS_PREFIX + '-hint' }, (it.ok ? (it.version || '') : (it.error || T('menu.runFailed'))) + (it.source ? (' · ' + it.source) : '')),
+                      h('span', { className: CSS_PREFIX + '-hint' }, it.ok ? '' : (it.error || T('menu.runFailed'))),
                     )
                   }),
-                  h('div', { style: { marginTop: '6px' } },
+                  p.blocked ? null : h('div', { style: { marginTop: '6px' } },
                     groupDevices.length > 0
                       ? h('div', { className: CSS_PREFIX + '-list' }, groupDevices.map(function (dev) {
                           const running = runningSns.indexOf(dev.sn) >= 0
@@ -1863,8 +1940,9 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
           ) : null,
           dialogFor ? h(ProviderDialog, {
             providerId: dialogFor.id, providerLabel: dialogFor.label,
+            providerAbi: dialogFor.abi, providerAbiDeclared: dialogFor.abiDeclared,
             capabilities: dialogFor.capabilities,   // 画面四件套的声明（未声明时对话框给提示，不静默失效）
-            onClose: function () { setDialogFor(null); loadAll() },
+            onClose: function () { const id = dialogFor.id; setDialogFor(null); refreshProvider(id) },
           }) : null,
         )
       }

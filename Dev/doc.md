@@ -13,7 +13,7 @@
 | **provider** | 这台设备**怎么连**（传输）、**怎么点/按键**（动作）、**怎么出画面**（sidecar + 流）、环境检测、自己的连接配置 |
 
 provider **没有浏览器半区**（界面全在 core）、**不注册任何 AI 工具**、**不写提示词**、**不接收语言参数**。
-【用户口述 2026-09-26】"provider 里必须包含这四个画面选项的实现，然后还能自定义别的参数设置" / "provider 自己的文案，直接在包里面写两套全传给 core，然后 core 再挑。"
+"provider 里必须包含这四个画面选项的实现，然后还能自定义别的参数设置" / "provider 自己的文案，直接在包里面写两套全传给 core，然后 core 再挑。"
 
 ## 1. 最小可用 provider 的骨架
 
@@ -31,7 +31,7 @@ export const apply = (ctx) => { /* 注册 */ }
 | `id` | 必填 | provider 标识（core 内部路由用，别改） |
 | `label` | 必填 | 显示名，**`{zh,en}`** |
 | `transport` | 必填 | `wired` / `wireless` / 两者（core 用它分组、选画面档位） |
-| `coreCompat` | 必填 | 支持的 core 版本，如 `^1.0.0`；**判定权在 core**，不通过就把你标停用（设备不进列表、动作不路由），**你不要 throw** |
+| `abi` | 必填 | **整数**，当前是 `1`。只做**等号**比较：和 core 的 `ABI` 相等才算兼容。不相等（或没写）→ 把你标成停用（设备不进列表、动作不路由），菜单显示「不兼容」+ 原因。**你不要 throw**，也不用读 core 的版本号。什么时候 +1 见 `CONTRACT.md` §7 |
 | `available` | 必填 | 当前环境能不能用（adb/hdc/java 在不在）；不可用时要给 `note`（**`{zh,en}`**）说明原因 |
 | `capabilities` | 必填 | 你支持什么：`picture` / `keys` / `keyLabels` / `aiKeys` / `streams` / `log` / `hintSwipe` / …（**声明了 core 才显示，不声明不静默失效而是给提示**） |
 | `actions` | 必填 | 见 §2 |

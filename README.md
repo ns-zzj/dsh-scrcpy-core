@@ -5,8 +5,6 @@
 装两个包就能用：**本包 + 一个平台 provider**（[安卓](https://github.com/ns-zzj/dsh-android-scrcpy) / [鸿蒙](https://github.com/ns-zzj/dsh-hos-scrcpy)）。
 界面、AI 工具、提示词、权限、设备与聚焦，全在 core 里；provider 只负责"这台设备怎么连、怎么出画面"。
 
-> 中文 | **[English](./README.en.md)**
-
 ---
 
 ## 预览
@@ -97,8 +95,7 @@
 
 ## 开发者
 
-契约（provider 怎么登记、动作接口、投屏流协议、ABI 判定）：见 **[CONTRACT.md](./CONTRACT.md)**；
-写一个 provider 的完整指南：见 **[Dev/doc.md](./Dev/doc.md)**。
+写一个 provider：见 **[Provider.md](./Provider.md)** —— 注册字段、动作、capabilities、投屏流协议、坐标的坑都在里面。
 
 ```
 dsh-scrcpy-core/
@@ -107,9 +104,8 @@ dsh-scrcpy-core/
 ├── lib/                  # 宿主半区：注册表 / 设备与聚焦 / 路由 / 工具 / 提示词 / RPC
 ├── client/               # 浏览器半区：全部 UI
 ├── resources/            # jmuxer.min.js（解码库，随包发）
-├── CONTRACT.md           # core ↔ provider 契约
-├── Dev/doc.md            # 怎么写一个 provider
-└── README.md / README.en.md
+├── Provider.md           # 怎么写一个 provider
+└── README.md
 ```
 
 **为什么每一行只有一个 owner**：`applyEntryPatches` 不按 id 去重 —— 两个 bundle 层各插一条同 id 条目，组合结果里会留下两条，挂载时被 `EntryGroup.update` 以 `duplicate loader entry id` 拒绝，**启动直接失败**。

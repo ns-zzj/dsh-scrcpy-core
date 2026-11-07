@@ -392,6 +392,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         'panel.kbdUnsupported': '此平台不支持键盘接管',
         'panel.inUnsupported': '不支持键盘输入', 'panel.inToggleLabel': '键盘输入启用开关', 'panel.inOff': '未启用键盘输入',
         'panel.inBlur': '未聚焦，无法输入', 'panel.inReady': '已聚焦，准备输入',
+        'panel.inPasteDenied': '读不到电脑剪贴板（浏览器未授权）',
         'panel.inTextOnly': '（仅支持文字）', 'panel.inAria': '电脑键盘输入到设备',
         'panel.inTitle': '打开开关后点一下画面，就能用电脑键盘和输入法往这台设备打字；点画面外或关掉开关即退出',
         'panel.inToggleTitle': '开关：允许用电脑键盘往这台设备打字',
@@ -462,6 +463,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         'panel.kbdUnsupported': 'Keyboard capture is not supported on this platform',
         'panel.inUnsupported': 'Keyboard input not supported', 'panel.inToggleLabel': 'Enable keyboard input', 'panel.inOff': 'Keyboard input off',
         'panel.inBlur': 'Not focused: cannot type', 'panel.inReady': 'Focused: ready to type',
+        'panel.inPasteDenied': 'Cannot read the computer clipboard (permission denied)',
         'panel.inTextOnly': ' (text only)', 'panel.inAria': 'Computer keyboard input to the device',
         'panel.inTitle': 'Turn the switch on, click the picture, then type with your computer keyboard and IME; click outside or turn the switch off to stop',
         'panel.inToggleTitle': 'Allow typing to this device with the computer keyboard',
@@ -673,7 +675,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
       //     overlay  — 贴到右侧栏标签页上报的矩形上
       //     hidden   — 标签页不在最前 / 侧栏收起：留在 DOM 里继续收流解码，只是不显示
       //   面板常驻在 header 组件里：切标签页/收侧栏都不会卸载它，所以 WS 与解码器活着，
-      //   切回来是接着放的画面（整条流只有一个关键帧，重开解码器必黑屏 —— 见 Dev/doc.md §2.4-16）
+      //   切回来是接着放的画面（整条流只有一个关键帧，重开解码器必黑屏）
       // ------------------------------------------------------------
       function ControlPanel(props) {
         const sn = props.sn
@@ -686,6 +688,11 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         const keyMode = props.keyMode
         const inputMode = props.inputMode
         const caps = props.caps || {}
+        // 键盘输入模型，由 provider 声明：
+        //   'ime'  = 电脑输入法（焦点给隐藏输入框，Shift 归电脑，只送确认后的文字）
+        //   'keys' = 固定英文直输（焦点给画面，按键直通 UHID，Shift 也发给设备）
+        // 注意：这里不能用 inputMode，那个名字是 AI 输入的权限模式（off/confirm/trust）。
+        const kbdMode = (caps && caps.inputMode === 'keys') ? 'keys' : 'ime'
         const placement = props.placement || 'floating'
         const rect = props.rect || null
 
@@ -725,7 +732,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         const reportedSizeRef = React.useRef(null)
         // 当前 jmuxer 轨道认的**编码尺寸**（由流里的 SPS 决定，不用 videoWidth —— 后者会被 jmuxer 算歪）
         const trackDimsRef = React.useRef('')
-        // 【2026-09-29 实测】重建是**异步**的（要新起 MediaSource / 换 <video> 的 src）：重建后"紧接着喂"的那一帧会丢，
+        // 实测：重建是**异步**的（要新起 MediaSource / 换 <video> 的 src）：重建后"紧接着喂"的那一帧会丢，
         //   而那一帧往往正是唯一一份"配置 + 关键帧" → 新 jmuxer 永远建不出轨道 → 一直黑（demo 与插件都能稳定复现：
         //   补发里明明有 SPS/PPS/IDR，重建后却 `video 尺寸 → 0x0`；下一次配置+关键帧来了碰巧就绪才活）。
         //   所以重建后先把帧攒进这里，延迟一小下（等 MediaSource 就绪）再按顺序一起喂。
@@ -742,7 +749,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
           }
         }
         // 从一帧 Annex-B 数据里解出 SPS 的编码尺寸（"1280x720"）；没有 SPS 或解不出就返回 null。
-        // 【2026-09-29 实测依据】见 hos/Dev/demo/browser-demo.mjs：靠 videoWidth 发现尺寸变化太晚，
+        // 实测：靠 videoWidth 发现尺寸变化太晚，
         //   而"看到 SPS 就先换 jmuxer 再喂"能立刻跟过去。
         function spsDimsOf(u8) {
           try {
@@ -816,7 +823,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         }
         function logDiag(msg) { setDiag(function (prev) { return prev.concat(logTs() + ' ' + String(msg)).slice(-15) }) }
         // 需要**活着留证据**的诊断走这条：写进那份 500 行的日志（diag 只有 15 行，卡住诊断很容易被后续诊断挤掉，
-        // 而用户通常是事后才打开日志面板 —— 【2026-09-28】为此加）
+        // 而用户通常是事后才打开日志面板，所以留这份长的）
         function logDiagLong(msg) { setLogLines(function (prev) { return prev.concat(logTs() + ' ' + String(msg)).slice(-500) }) }
 
         function computeWidth() {
@@ -880,10 +887,13 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         }
         function hidHandles(e) { return HID_MODIFIER_CODES[e.code] === 1 || !!HID_USAGE[e.code] }
         function sendHidKey(e, down) {
-          // 不支持键盘接管的平台（caps.keyboard === false，如鸿蒙）**一个键都不能发**：
+          // 开关关着：一个键都不发
+          if (!inputOn) return false
+          // 不支持键盘接管的平台（caps.keyboard === false，如鸿蒙）也不发：
           //   鸿蒙 sidecar 的协议里没有 `hid` 类型 → 按一下 Shift 就回 "错误: unknown type: hid"。
-          //   之前 caps.keyboard 只用来显示提示文字，没拦住发送，所以漏了。
           if (caps && caps.keyboard === false) return false
+          // 组合键不发给设备：在电脑上长按复制粘贴就够了，设备侧不需要 Ctrl/Alt/Meta 和弦
+          if (e.ctrlKey || e.metaKey || e.altKey) return false
           const isMod = HID_MODIFIER_CODES[e.code] === 1
           if (!isMod && !HID_USAGE[e.code]) return false
           if (HID_PASSTHROUGH[e.code] && (e.ctrlKey || e.metaKey || e.code === 'F5' || e.code === 'F11' || e.code === 'F12')) return false
@@ -891,6 +901,11 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
           return true
         }
         function onHidKeyDown(e) {
+          if (!inputOn) return
+          // Ctrl/Cmd+C 取设备剪贴板，Ctrl/Cmd+V 把电脑剪贴板送进设备 —— 这两个归电脑，不走 HID
+          const mod = e.ctrlKey || e.metaKey
+          if (mod && (e.key === 'c' || e.key === 'C')) { e.preventDefault(); pullDeviceClipboard(); return }
+          if (mod && (e.key === 'v' || e.key === 'V')) { e.preventDefault(); pasteToDevice(); return }
           // 重复键交给设备侧（HID 规范：repeat 由 host 处理）
           if (e.repeat) { if (hidHandles(e)) e.preventDefault(); return }
           if (sendHidKey(e, true)) e.preventDefault()
@@ -1023,12 +1038,12 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
                   framesRef.current += 1
                   bytesRef.current += ev.data.byteLength
                   if (!playingRef.current) { playingRef.current = true; setStatus('playing') }
-                  // ⚠️ 不要给 feed() 传 duration！【2026-09-28 实测血亏】jmuxer 内部会把一次调用的时长
+                  // ⚠️ 不要给 feed() 传 duration！实测血亏：jmuxer 内部会把一次调用的时长
                   //   按 NAL 个数**整除**（`t/a.length|0`），而变化驱动的流是成串到达的（帧间隔常是 1ms），
                   //   1/2|0 = 0 → 它判定"非法时长"直接丢样本 → 两个平台全黑（buffered=[] readyState=0 paused=true）。
                   //   时间轴漂移改用下面的"播放头拨回"来治，别去动 jmuxer 的计时。
                   const _u8 = new Uint8Array(ev.data)
-                  // 【2026-09-29 实测】喂之前先看这一帧里的 SPS：编码尺寸与当前轨道不同 → **先换 jmuxer 再喂**。
+                  // 实测：喂之前先看这一帧里的 SPS：编码尺寸与当前轨道不同 → **先换 jmuxer 再喂**。
                   //   靠 videoWidth 判断太晚（jmuxer 会拿旧轨道比例算出 2160x1440 这种假值），SPS 才是真值。
                   const _dims = spsDimsOf(_u8)
                   if (_dims && _dims !== trackDimsRef.current) {
@@ -1176,7 +1191,7 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
         }, [port])
 
         // 面板不可见 → 暂停"广播"（抓屏会话留着）；重新可见 → 恢复广播
-        // 【2026-09-28】本轮**不在恢复可见时重建解码器**：那会把"卡住之后切回来也没用"这个待查现象盖掉。
+        // **不在恢复可见时重建解码器**：那会把"卡住之后切回来也没用"这个待查现象盖掉。
         //   （用户此前实测：卡住后切回来无效，只有断开重连/旋转屏幕能救）
         React.useEffect(function () {
           if (placement === 'hidden') sendCmd({ type: 'screen', mode: 'pause' })
@@ -1310,9 +1325,20 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
           }).catch(function () {})
         }
 
+        // Ctrl+V：把电脑剪贴板送进设备。
+        //   只在 keys 模式下用（焦点在画面上，没有输入框接 Ctrl+V）；ime 模式由隐藏输入框的 onPaste 处理。
+        function pasteToDevice() {
+          try {
+            if (!navigator.clipboard || !navigator.clipboard.readText) { setInputMsg(T('panel.inPasteDenied')); return }
+            navigator.clipboard.readText().then(function (t) {
+              if (t) inputSend('text', { text: t })
+            }).catch(function () { setInputMsg(T('panel.inPasteDenied')) })
+          } catch (e) { setInputMsg(T('panel.inPasteDenied')) }
+        }
+
         // 隐形输入框：1px / 透明 / 不吃鼠标（这样鼠标事件全给画面，输入法仍能打字）
         const sinkStyle = { position: 'absolute', left: 0, top: 0, width: '1px', height: '1px', opacity: 0, border: 0, padding: 0, margin: 0, pointerEvents: 'none', caretColor: 'transparent', resize: 'none', overflow: 'hidden' }
-        const sinkEl = inputText ? h('textarea', {
+        const sinkEl = (kbdMode === 'ime' && inputText) ? h('textarea', {
           ref: inputRef, style: sinkStyle, autoComplete: 'off', autoCorrect: 'off', autoCapitalize: 'off', spellCheck: false,
           'aria-label': T('panel.inAria'),
           onCompositionStart: function () { composingRef.current = true },
@@ -1428,16 +1454,16 @@ body[data-ds-dark-theme] .${CSS_PREFIX}-guide-hero{color:var(--dsw-static-neutra
               // 去掉 Chromium 给聚焦元素的白框（点画面会冒出一圈，很难看）
               style: { outline: 'none' },
               onMouseDown: function (e) {
-                // 先抢焦点：preventDefault 只挡"焦点转移"，pointer 事件照样发
-                if (inputOn && inputText) { e.preventDefault(); inputTakeFocus() }
+                // 只有 ime 模式才把焦点抢给隐藏输入框；keys 模式要让画面自己拿到焦点，HID 才有键可收
+                if (kbdMode === 'ime' && inputOn && inputText) { e.preventDefault(); inputTakeFocus() }
                 draggingRef.current = true; sendTouch('down', e.clientX, e.clientY)
               },
               onMouseMove: function (e) { if (draggingRef.current) sendTouch('move', e.clientX, e.clientY) },
               onMouseUp: function (e) { draggingRef.current = false; sendTouch('up', e.clientX, e.clientY) },
               onMouseLeave: function (e) { if (draggingRef.current) { draggingRef.current = false; sendTouch('up', e.clientX, e.clientY) } },
               // 点一下就接管 PC 键盘；点画面外自动放开
-              onFocus: function () { setKbdOn(true) },
-              onBlur: function () { setKbdOn(false) },
+              onFocus: function () { setKbdOn(true); if (kbdMode === 'keys') setInputFocus(true) },
+              onBlur: function () { setKbdOn(false); if (kbdMode === 'keys') setInputFocus(false) },
               onKeyDown: onHidKeyDown,
               onKeyUp: onHidKeyUp,
             }),

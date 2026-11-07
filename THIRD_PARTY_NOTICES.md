@@ -12,7 +12,6 @@
 - 许可：MIT
 - 用途：**浏览器半区**把 provider 送来的 H.264 流解码播放（core 自带这份，页面上用）
 - 分发形式：`resources/jmuxer.min.js`（**随 npm 包发布**）
-- 同源副本：`hos/Dev/demo/jmuxer.min.js`、`android/Dev/demo/jmuxer.min.js`（开发件，各有自己的声明）
 
 ```text
 License

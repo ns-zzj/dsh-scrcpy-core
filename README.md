@@ -5,6 +5,8 @@
 装两个包就能用：**本包 + 一个平台 provider**（[安卓](https://github.com/ns-zzj/dsh-android-scrcpy) / [鸿蒙](https://github.com/ns-zzj/dsh-hos-scrcpy)）。
 界面、AI 工具、提示词、权限、设备与聚焦，全在 core 里；provider 只负责"这台设备怎么连、怎么出画面"。
 
+> **维护说明**：最近精力有限，维护和回复可能不及时。issue / PR 我会看，但暂时没法承诺处理时间，见谅。
+
 ---
 
 ## 预览
